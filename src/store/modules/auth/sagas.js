@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 
 import api from '../../../services/api2';
+import history from '../../../services/history';
 import { userSuccess } from './actions';
 
 function* signIn({ payload }) {
@@ -19,6 +20,8 @@ function* signIn({ payload }) {
     yield put(userSuccess(user));
 
     toast.success('Logado com sucesso!');
+
+    history.push('/perfil');
   } catch (err) {
     toast.error('Erro ao logar usuário!');
   }
@@ -37,6 +40,8 @@ function* signUp({ payload }) {
     yield put(userSuccess(response.data));
 
     toast.success('Usuário criado com sucesso!');
+
+    history.push('/perfil');
   } catch (err) {
     toast.error('Erro ao criar usuário!');
   }
