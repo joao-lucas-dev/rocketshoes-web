@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
-import api from '../../services/api';
+import nodeServer from '../../services/nodeServer';
 import * as CartActions from '../../store/modules/cart/actions';
 import { formatPrice } from '../../utils/format';
 import { ProductList } from './styles';
@@ -15,7 +15,7 @@ class Home extends Component {
   };
 
   async componentDidMount() {
-    const response = await api.get('/products');
+    const response = await nodeServer.get('/shoes');
 
     const data = response.data.map(product => ({
       ...product,
@@ -39,8 +39,8 @@ class Home extends Component {
       <ProductList>
         {products.map(product => (
           <li key={product.id}>
-            <img src={product.image} alt="Tênis" />
-            <strong>{product.title}</strong>
+            <img src={product.url} alt="Tênis" />
+            <strong>{product.name}</strong>
             <span>{product.priceFormatted}</span>
 
             <button

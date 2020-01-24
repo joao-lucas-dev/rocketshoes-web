@@ -2,7 +2,8 @@ import { toast } from 'react-toastify';
 
 import { call, select, put, all, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../services/api';
+import jsonServer from '../../../services/jsonServer';
+import nodeServer from '../../../services/nodeServer';
 import { formatPrice } from '../../../utils/format';
 import { addToCartSuccess, updateAmountSuccess } from './actions';
 
@@ -11,7 +12,7 @@ function* addToCart({ id }) {
     state.cart.find(p => p.id === id)
   );
 
-  const stock = yield call(api.get, `/stock/${id}`);
+  const stock = yield call(jsonServer.get, `/stock/${id}`);
 
   const stockAmount = stock.data.amount;
   const currentAmount = productExists ? productExists.amount : 0;
@@ -26,12 +27,12 @@ function* addToCart({ id }) {
   if (productExists) {
     yield put(updateAmountSuccess(id, amount));
   } else {
-    const response = yield call(api.get, `/products/${id}`);
+    const response = yield call(nodeServer.get, `/shoes/${id}`);
 
     const data = {
-      ...response.data,
+      ...response.data[0],
       amount: 1,
-      priceFormatted: formatPrice(response.data.price),
+      priceFormatted: formatPrice(response.data[0].price),
     };
 
     yield put(addToCartSuccess(data));
@@ -41,7 +42,7 @@ function* addToCart({ id }) {
 function* updateAmount({ id, amount }) {
   if (amount <= 0) return;
 
-  const stock = yield call(api.get, `/stock/${id}`);
+  const stock = yield call(jsonServer.get, `/stock/${id}`);
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {

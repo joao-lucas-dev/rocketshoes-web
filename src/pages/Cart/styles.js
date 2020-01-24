@@ -1,6 +1,23 @@
 import { darken } from 'polished';
 import styled from 'styled-components';
 
+export const Box = styled.div`
+  padding: 30px;
+  background: #fff;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 18px;
+  }
+`;
+
 export const Container = styled.div`
   padding: 30px;
   background: #fff;

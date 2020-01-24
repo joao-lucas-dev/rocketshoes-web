@@ -2,15 +2,15 @@ import { toast } from 'react-toastify';
 
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 
-import api from '../../../services/api2';
 import history from '../../../services/history';
+import nodeServer from '../../../services/nodeServer';
 import { userSuccess } from './actions';
 
 function* signIn({ payload }) {
   const { email, password } = payload;
 
   try {
-    const response = yield call(api.post, '/sessions', {
+    const response = yield call(nodeServer.post, '/sessions', {
       email,
       password,
     });
@@ -31,7 +31,7 @@ function* signUp({ payload }) {
   const { name, email, password } = payload;
 
   try {
-    const response = yield call(api.post, '/users', {
+    const response = yield call(nodeServer.post, '/users', {
       name,
       email,
       password,

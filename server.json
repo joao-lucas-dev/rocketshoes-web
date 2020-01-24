@@ -1,20 +1,4 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "João Lucas",
-      "email": "souzz12345@gmail.com",
-      "senha": "123456",
-      "type": "user"
-    },
-    {
-      "id": 2,
-      "name": "Carlos Torres",
-      "email": "carlos@rocketshoes.com",
-      "senha": "123456",
-      "type": "admin"
-    }
-  ],
   "stock": [
     {
       "id": 1,
