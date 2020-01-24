@@ -24,5 +24,5 @@ This project features all the latest tools and practices in front-end developmen
 2. Move yourself to the appropriate directory: `cd rocketshoes-web`
 3. To install all dependencies, run: `yarn`
 4. To run the Node.js API, access the repository: <a href="https://github.com/joao-lucas-dev/rocketshoes-backend" target="_blank">rocketshoes-backend</a>
-5. Run `json-server server.json -p 8080` to start local database to check stock is available
+5. Run `json-server server.json -p 8080` in another terminal to start local database to check stock is available
 6. Run `yarn start` to start the website
